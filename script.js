@@ -17,14 +17,34 @@ const divide = function(a, b) {
 
 let firstNum = 0;
 let secocndNum = 0;
-let operlator = '';
+let text = [];
 
 let btns = document.querySelectorAll(".digit")
-let display = document.querySelector(".display");
-console.log(btns);
-btns.forEach((elem) => {
-    elem.addEventListener("click", () => {
-        operlator = elem.textContent;
-        display.textContent += operlator;
+let display = document.querySelector(".display"); 
+btns.forEach((digit) => {
+    digit.addEventListener("click", () => {
+        text.push(digit.textContent);
+        display.textContent = text.join("");
     })
 })
+
+let operatorsBtn = document.querySelectorAll(".operator");
+let operator = '';
+
+let firsrReccordNumber = '';
+operatorsBtn.forEach((operatorBtn) => {
+    operatorBtn.addEventListener("click", () => {
+        operator = operatorBtn.textContent;
+        firsrReccordNumber = text.join("");
+        display.textContent = '';
+        text = [];
+        console.log(firsrReccordNumber+operator);
+    })
+})
+
+
+// When click Operator()
+        // Assign displaying value to a variable
+        // Reset display to Empty
+        // Store operator as string
+        // Decide what to do with stored operator
