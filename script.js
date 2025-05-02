@@ -42,9 +42,20 @@ operatorsBtn.forEach((operatorBtn) => {
     })
 })
 
+let equalBtn = document.querySelector("#operate");
+equalBtn.addEventListener(('click'), operate);
 
-// When click Operator()
-        // Assign displaying value to a variable
-        // Reset display to Empty
-        // Store operator as string
-        // Decide what to do with stored operator
+function operate() {
+    if (operator === '+') {
+        display.textContent = +firsrReccordNumber + +text.join('');
+    }
+    else if (operator === '-') {
+        display.textContent = +firsrReccordNumber - +text.join('');
+    }
+    else if (operator === 'x') {
+        display.textContent = +firsrReccordNumber * +text.join('');
+    }
+    else if (operator === '%') {
+        display.textContent = +firsrReccordNumber / +text.join('');
+    }
+}
