@@ -18,13 +18,19 @@ const divide = function(a, b) {
 let firstNum = 0;
 let secocndNum = 0;
 let text = [];
+let firstNumberExist = false;
 
 let btns = document.querySelectorAll(".digit")
 let display = document.querySelector(".display"); 
 btns.forEach((digit) => {
     digit.addEventListener("click", () => {
+        if (firstNumberExist){
+            display.textContent = '';
+            text = [];
+        }
         text.push(digit.textContent);
         display.textContent = text.join("");
+        firstNumberExist = false;
     })
 })
 
@@ -36,8 +42,7 @@ operatorsBtn.forEach((operatorBtn) => {
     operatorBtn.addEventListener("click", () => {
         operator = operatorBtn.textContent;
         firsrReccordNumber = text.join("");
-        display.textContent = '';
-        text = [];
+        firstNumberExist = true;
         console.log(firsrReccordNumber+operator);
     })
 })
