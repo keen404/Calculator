@@ -49,7 +49,7 @@ operatorsBtn.forEach((operatorBtn) => {
             if (operator === '+') {
                 operator = operatorBtn.textContent;
                 result = +firstReccordNumber + +text.join('');
-                display.textContent = result;
+                display.textContent = +result.toFixed(5);
                 firstReccordNumber = result;
                 firstNumberExist = true;
                 text = [];
@@ -59,7 +59,7 @@ operatorsBtn.forEach((operatorBtn) => {
             else if (operator === '-') {
                 operator = operatorBtn.textContent;
                 result = +firstReccordNumber - +text.join('');
-                display.textContent = result;
+                display.textContent = +result.toFixed(5);
                 firstReccordNumber = result;
                 firstNumberExist = true;
                 text = [];
@@ -69,7 +69,7 @@ operatorsBtn.forEach((operatorBtn) => {
             else if (operator === 'x') {
                 operator = operatorBtn.textContent;
                 result = +firstReccordNumber * +text.join('');
-                display.textContent = result;
+                display.textContent = +result.toFixed(5);
                 firstReccordNumber = result;
                 firstNumberExist = true;
                 text = [];
@@ -79,7 +79,7 @@ operatorsBtn.forEach((operatorBtn) => {
             else if (operator === '%') {
                 operator = operatorBtn.textContent;
                 result = +firstReccordNumber / +text.join('');
-                display.textContent = result;
+                display.textContent = +result.toFixed(5);
                 if(result === Infinity){
                     display.textContent = "Can't divided by 0";
                     text = [];
@@ -103,7 +103,7 @@ equalBtn.addEventListener(('click'), operate);
 function operate() {
     if (operator === '+') {
         result = +firstReccordNumber + +text.join('');
-        display.textContent = result;
+        display.textContent = +result.toFixed(5);
         firstReccordNumber = "";
         text = [];
         text.push(result);
@@ -111,7 +111,7 @@ function operate() {
     }
     else if (operator === '-') {
         result = +firstReccordNumber - +text.join('');
-        display.textContent = result;
+        display.textContent = +result.toFixed(5);
         firstReccordNumber = "";
         text = [];
         text.push(result);
@@ -119,7 +119,7 @@ function operate() {
     }
     else if (operator === 'x') {
         result = +firstReccordNumber * +text.join('');
-        display.textContent = result;
+        display.textContent = +result.toFixed(5);
         firstReccordNumber = "";
         text = [];
         text.push(result);
@@ -127,7 +127,7 @@ function operate() {
     }
     else if (operator === '%') {
         result = +firstReccordNumber / +text.join('');
-        display.textContent = result;
+        display.textContent = +result.toFixed(5);
         if(result === Infinity){
             display.textContent = "Can't divided by 0";
             text = [];
