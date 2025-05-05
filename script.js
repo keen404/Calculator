@@ -17,6 +17,8 @@ const divide = function(a, b) {
 
 let text = [];
 let firstNumberExist = false;
+let firstReccordNumber = '';
+let seccondRecordNumber = '';
 
 let btns = document.querySelectorAll(".digit")
 let display = document.querySelector(".display"); 
@@ -29,6 +31,11 @@ btns.forEach((digit) => {
         text.push(digit.textContent);
         display.textContent = text.join("");
         firstNumberExist = false;
+        console.log(`the FirstReccordNumber: ${firstReccordNumber}`);
+        console.log(`the Text: ${text}`);
+        console.log(`the Result: ${result}`);
+        console.log(`The Display: ${display.textContent}`)
+        console.log(`the FirstNumberExist: ${firstNumberExist}`);
     })
 })
 
@@ -37,43 +44,67 @@ let operator = '';
 
 let result = 0;
 
-let firstReccordNumber = '';
 operatorsBtn.forEach((operatorBtn) => {
     operatorBtn.addEventListener("click", () => {
         if (!firstReccordNumber) {
             operator = operatorBtn.textContent;
             firstReccordNumber = text.join("");
+            text = [];
             firstNumberExist = true;
+            console.log(`the FirstReccordNumber: ${firstReccordNumber}`);
+            console.log(`the Text: ${text}`);
+            console.log(`the Result: ${result}`);
+            console.log(`The Display: ${display.textContent}`)
+            console.log(`the FirstNumberExist: ${firstNumberExist}`);
+
         }
         else if (firstReccordNumber){
             if (operator === '+') {
                 operator = operatorBtn.textContent;
                 result = +firstReccordNumber + +text.join('');
+                if (!text.join('')) {
+                    return
+                 }
                 display.textContent = +result.toFixed(5);
-                firstReccordNumber = result;
+                firstReccordNumber = '';
                 firstNumberExist = true;
                 text = [];
                 text.push(result);
+                console.log(`the FirstReccordNumber: ${firstReccordNumber}`);
+                console.log(`the Text: ${text}`);
+                console.log(`the Result: ${result}`);
+                console.log(`The Display: ${display.textContent}`)
+                console.log(`the FirstNumberExist: ${firstNumberExist}`);
 
             }
             else if (operator === '-') {
                 operator = operatorBtn.textContent;
                 result = +firstReccordNumber - +text.join('');
                 display.textContent = +result.toFixed(5);
-                firstReccordNumber = result;
+                firstReccordNumber = '';
                 firstNumberExist = true;
                 text = [];
                 text.push(result);
+                console.log(`the FirstReccordNumber: ${firstReccordNumber}`);
+                console.log(`the Text: ${text}`);
+                console.log(`the Result: ${result}`);
+                console.log(`The Display: ${display.textContent}`)
+                console.log(`the FirstNumberExist: ${firstNumberExist}`);
 
             }
             else if (operator === 'x') {
                 operator = operatorBtn.textContent;
                 result = +firstReccordNumber * +text.join('');
                 display.textContent = +result.toFixed(5);
-                firstReccordNumber = result;
+                firstReccordNumber = '';
                 firstNumberExist = true;
                 text = [];
                 text.push(result);
+                console.log(`the FirstReccordNumber: ${firstReccordNumber}`);
+                console.log(`the Text: ${text}`);
+                console.log(`the Result: ${result}`);
+                console.log(`The Display: ${display.textContent}`)
+                console.log(`the FirstNumberExist: ${firstNumberExist}`);
 
             }
             else if (operator === '%') {
@@ -86,10 +117,15 @@ operatorsBtn.forEach((operatorBtn) => {
                     result = 0;
                     firstReccordNumber = '';
                 }
-                firstReccordNumber = result;
+                firstReccordNumber = '';
                 firstNumberExist = true;
                 text = [];
                 text.push(result);
+                console.log(`the FirstReccordNumber: ${firstReccordNumber}`);
+                console.log(`the Text: ${text}`);
+                console.log(`the Result: ${result}`);
+                console.log(`The Display: ${display.textContent}`)
+                console.log(`the FirstNumberExist: ${firstNumberExist}`);
 
             }
         }
@@ -107,6 +143,11 @@ function operate() {
         firstReccordNumber = "";
         text = [];
         text.push(result);
+        console.log(`the FirstReccordNumber: ${firstReccordNumber}`);
+        console.log(`the Text: ${text}`);
+        console.log(`the Result: ${result}`);
+        console.log(`The Display: ${display.textContent}`)
+        console.log(`the FirstNumberExist: ${firstNumberExist}`);
 
     }
     else if (operator === '-') {
@@ -115,6 +156,11 @@ function operate() {
         firstReccordNumber = "";
         text = [];
         text.push(result);
+        console.log(`the FirstReccordNumber: ${firstReccordNumber}`);
+        console.log(`the Text: ${text}`);
+        console.log(`the Result: ${result}`);
+        console.log(`The Display: ${display.textContent}`)
+        console.log(`the FirstNumberExist: ${firstNumberExist}`);
 
     }
     else if (operator === 'x') {
@@ -123,6 +169,11 @@ function operate() {
         firstReccordNumber = "";
         text = [];
         text.push(result);
+        console.log(`the FirstReccordNumber: ${firstReccordNumber}`);
+        console.log(`the Text: ${text}`);
+        console.log(`the Result: ${result}`);
+        console.log(`The Display: ${display.textContent}`)
+        console.log(`the FirstNumberExist: ${firstNumberExist}`);
 
     }
     else if (operator === '%') {
@@ -138,9 +189,15 @@ function operate() {
         firstReccordNumber = "";
         text = [];
         text.push(result);
+        console.log(`the FirstReccordNumber: ${firstReccordNumber}`);
+        console.log(`the Text: ${text}`);
+        console.log(`the Result: ${result}`);
+        console.log(`The Display: ${display.textContent}`)
+        console.log(`the FirstNumberExist: ${firstNumberExist}`);
 
     }
 }
+
 
 let clearBtn = document.querySelector(".clear");
 clearBtn.addEventListener("click", clear);
