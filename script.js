@@ -142,3 +142,12 @@ function operate() {
     }
 }
 
+let clearBtn = document.querySelector(".clear");
+clearBtn.addEventListener("click", clear);
+
+function clear() {
+    firstNumberExist = false;
+    text = [];
+    firstReccordNumber = '';
+    display.textContent = '';
+}
