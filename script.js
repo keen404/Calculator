@@ -15,8 +15,6 @@ const divide = function(a, b) {
     return +a / +b
 }
 
-let firstNum = 0;
-let secocndNum = 0;
 let text = [];
 let firstNumberExist = false;
 
@@ -37,30 +35,110 @@ btns.forEach((digit) => {
 let operatorsBtn = document.querySelectorAll(".operator");
 let operator = '';
 
-let firsrReccordNumber = '';
+let result = 0;
+
+let firstReccordNumber = '';
 operatorsBtn.forEach((operatorBtn) => {
     operatorBtn.addEventListener("click", () => {
-        operator = operatorBtn.textContent;
-        firsrReccordNumber = text.join("");
-        firstNumberExist = true;
-        console.log(firsrReccordNumber+operator);
+        if (!firstReccordNumber) {
+            operator = operatorBtn.textContent;
+            firstReccordNumber = text.join("");
+            firstNumberExist = true;
+        }
+        else if (firstReccordNumber){
+            if (operator === '+') {
+                operator = operatorBtn.textContent;
+                result = +firstReccordNumber + +text.join('');
+                display.textContent = result;
+                firstReccordNumber = result;
+                firstNumberExist = true;
+                text = [];
+                text.push(result);
+
+            }
+            else if (operator === '-') {
+                operator = operatorBtn.textContent;
+                result = +firstReccordNumber - +text.join('');
+                display.textContent = result;
+                firstReccordNumber = result;
+                firstNumberExist = true;
+                text = [];
+                text.push(result);
+
+            }
+            else if (operator === 'x') {
+                operator = operatorBtn.textContent;
+                result = +firstReccordNumber * +text.join('');
+                display.textContent = result;
+                firstReccordNumber = result;
+                firstNumberExist = true;
+                text = [];
+                text.push(result);
+
+            }
+            else if (operator === '%') {
+                operator = operatorBtn.textContent;
+                result = +firstReccordNumber / +text.join('');
+                display.textContent = result;
+                if(result === Infinity){
+                    display.textContent = "Can't divided by 0";
+                    text = [];
+                    result = 0;
+                    firstReccordNumber = '';
+                }
+                firstReccordNumber = result;
+                firstNumberExist = true;
+                text = [];
+                text.push(result);
+
+            }
+        }
     })
 })
 
 let equalBtn = document.querySelector("#operate");
 equalBtn.addEventListener(('click'), operate);
 
+
 function operate() {
     if (operator === '+') {
-        display.textContent = +firsrReccordNumber + +text.join('');
+        result = +firstReccordNumber + +text.join('');
+        display.textContent = result;
+        firstReccordNumber = "";
+        text = [];
+        text.push(result);
+
     }
     else if (operator === '-') {
-        display.textContent = +firsrReccordNumber - +text.join('');
+        result = +firstReccordNumber - +text.join('');
+        display.textContent = result;
+        firstReccordNumber = "";
+        text = [];
+        text.push(result);
+
     }
     else if (operator === 'x') {
-        display.textContent = +firsrReccordNumber * +text.join('');
+        result = +firstReccordNumber * +text.join('');
+        display.textContent = result;
+        firstReccordNumber = "";
+        text = [];
+        text.push(result);
+
     }
     else if (operator === '%') {
-        display.textContent = +firsrReccordNumber / +text.join('');
+        result = +firstReccordNumber / +text.join('');
+        display.textContent = result;
+        if(result === Infinity){
+            display.textContent = "Can't divided by 0";
+            text = [];
+            result = 0;
+            firstReccordNumber = '';
+            return;
+        }
+        firstReccordNumber = "";
+        text = [];
+        text.push(result);
+
     }
 }
+
