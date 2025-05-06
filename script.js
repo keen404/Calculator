@@ -25,19 +25,21 @@ digitBtns.forEach(function(btn) {
 })
 
 let firstNumber = 0;
-let operate = '';
+let operator = '';
 const operatorBtns = document.querySelectorAll('.operator');
 operatorBtns.forEach(function(btn) {
     btn.addEventListener('click', () => {
+        if (!firstNumber) {
+            
+        }
         firstNumber = displayDiv.textContent;
-        operate = btn.textContent;
+        operator = btn.textContent;
         displayDiv.textContent = '';
     })
 })
 
-const equalBtn = document.querySelector('#operate');
-equalBtn.addEventListener('click', () => {
-    switch (operate) {
+function operate() {
+    switch (operator) {
         case '+':
             displayDiv.textContent = add(firstNumber, displayDiv.textContent);
             break
@@ -51,5 +53,6 @@ equalBtn.addEventListener('click', () => {
             displayDiv.textContent = divide(firstNumber, displayDiv.textContent);
             break;
     }
-    
-})
+}
+const equalBtn = document.querySelector('#operate');
+equalBtn.addEventListener('click', operate)
