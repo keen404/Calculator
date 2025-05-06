@@ -15,24 +15,41 @@ const divide = function(a, b) {
 }
 
 
-const displayDiv = document.querySelector(".display");
-const digitBtns = document.querySelectorAll(".digit");
+const displayDiv = document.querySelector('.display');
+const digitBtns = document.querySelectorAll('.digit');
 
 digitBtns.forEach(function(btn) {
-    btn.addEventListener("click", () => {
+    btn.addEventListener('click', () => {
         displayDiv.textContent += btn.textContent;
     })
 })
 
 let firstNumber = 0;
-const operatorBtns = document.querySelectorAll(".operator");
+let operate = '';
+const operatorBtns = document.querySelectorAll('.operator');
 operatorBtns.forEach(function(btn) {
-    btn.addEventListener("click", () => {
+    btn.addEventListener('click', () => {
         firstNumber = displayDiv.textContent;
+        operate = btn.textContent;
         displayDiv.textContent = '';
-        console.log(firstNumber)
     })
 })
-// When press operator button 
-// Hold Current button
-// Empty the displaying text
+
+const equalBtn = document.querySelector('#operate');
+equalBtn.addEventListener('click', () => {
+    switch (operate) {
+        case '+':
+            displayDiv.textContent = add(firstNumber, displayDiv.textContent);
+            break
+        case '-':
+            displayDiv.textContent = subtract(firstNumber, displayDiv.textContent);
+            break;
+        case 'x':
+            displayDiv.textContent = multiply([firstNumber, displayDiv.textContent]);
+            break;
+        case '%':
+            displayDiv.textContent = divide(firstNumber, displayDiv.textContent);
+            break;
+    }
+    
+})
