@@ -17,9 +17,14 @@ const divide = function(a, b) {
 
 const displayDiv = document.querySelector('.display');
 const digitBtns = document.querySelectorAll('.digit');
+let clearDisplay = false;
 
 digitBtns.forEach(function(btn) {
     btn.addEventListener('click', () => {
+        if (clearDisplay) {
+            displayDiv.textContent = '';
+            clearDisplay = false
+        }
         displayDiv.textContent += btn.textContent;
     })
 })
@@ -29,12 +34,39 @@ let operator = '';
 const operatorBtns = document.querySelectorAll('.operator');
 operatorBtns.forEach(function(btn) {
     btn.addEventListener('click', () => {
-        if (!firstNumber) {
-            
+        if (!operator) {
+            firstNumber = displayDiv.textContent;
+            operator = btn.textContent;
+            clearDisplay = true
         }
-        firstNumber = displayDiv.textContent;
-        operator = btn.textContent;
-        displayDiv.textContent = '';
+        else {
+            switch (operator) {
+                case '+':
+                    displayDiv.textContent = add(firstNumber, displayDiv.textContent);
+                    firstNumber = displayDiv.textContent;
+                    operator = btn.textContent;
+                    clearDisplay = true;
+                    break
+                case '-':
+                    displayDiv.textContent = subtract(firstNumber, displayDiv.textContent);
+                    firstNumber = displayDiv.textContent;
+                    operator = btn.textContent;
+                    clearDisplay = true;
+                    break;
+                case 'x':
+                    displayDiv.textContent = multiply([firstNumber, displayDiv.textContent]);
+                    firstNumber = displayDiv.textContent;
+                    operator = btn.textContent;
+                    clearDisplay = true;
+                    break;
+                case '%':
+                    displayDiv.textContent = divide(firstNumber, displayDiv.textContent);
+                    firstNumber = displayDiv.textContent;
+                    operator = btn.textContent;
+                    clearDisplay = true;
+                    break;
+            }
+        }
     })
 })
 
@@ -42,15 +74,23 @@ function operate() {
     switch (operator) {
         case '+':
             displayDiv.textContent = add(firstNumber, displayDiv.textContent);
+            firstNumber = 0;
+            operator = '';  
             break
         case '-':
             displayDiv.textContent = subtract(firstNumber, displayDiv.textContent);
+            firstNumber = 0;
+            operator = '';
             break;
         case 'x':
             displayDiv.textContent = multiply([firstNumber, displayDiv.textContent]);
+            firstNumber = 0;
+            operator = '';
             break;
         case '%':
             displayDiv.textContent = divide(firstNumber, displayDiv.textContent);
+            firstNumber = 0;
+            operator = '';
             break;
     }
 }
