@@ -103,18 +103,21 @@ function operate() {
             firstNumber = 0;
             operator = '';  
             suppliedTwoNumber = false;
+            clearDisplay = true;
             break
         case '-':
             displayDiv.textContent = parseFloat(subtract(firstNumber, displayDiv.textContent).toFixed(9));
             firstNumber = 0;
             operator = '';
             suppliedTwoNumber = false;
+            clearDisplay = true;
             break;
         case 'x':
             displayDiv.textContent = parseFloat(multiply([firstNumber, displayDiv.textContent]).toFixed(9));
             firstNumber = 0;
             operator = '';
             suppliedTwoNumber = false;
+            clearDisplay = true;
             break;
         case '%':
             if (displayDiv.textContent === '0') {
@@ -126,6 +129,7 @@ function operate() {
             firstNumber = 0;
             operator = '';
             suppliedTwoNumber = false;
+            clearDisplay = true;
             break;
     }
 }
