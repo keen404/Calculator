@@ -18,12 +18,19 @@ const divide = function(a, b) {
 const displayDiv = document.querySelector('.display');
 const digitBtns = document.querySelectorAll('.digit');
 let clearDisplay = false;
+let dividedByZero = false;
 
 digitBtns.forEach(function(btn) {
     btn.addEventListener('click', () => {
         if (clearDisplay) {
             displayDiv.textContent = '';
             clearDisplay = false
+        }
+        if (dividedByZero) {
+            firstNumber = 0;
+            operator = '';
+            displayDiv.textContent = '';
+            dividedByZero = false;
         }
         displayDiv.textContent += btn.textContent;
     })
@@ -37,16 +44,22 @@ operatorBtns.forEach(function(btn) {
         if (!operator) {
             firstNumber = displayDiv.textContent;
             operator = btn.textContent;
-            clearDisplay = true
+            clearDisplay = true;
         }
         else {
             switch (operator) {
+                case operator:
+                    if (operator === '%' && displayDiv.textContent === '0') {
+                        displayDiv.textContent = "Idiot!! can't divied by 0";
+                        dividedByZero = true;
+                        break;
+                    }
                 case '+':
                     displayDiv.textContent = parseFloat(add(firstNumber, displayDiv.textContent).toFixed(9));
                     firstNumber = displayDiv.textContent;
                     operator = btn.textContent;
                     clearDisplay = true;
-                    break
+                    break;
                 case '-':
                     displayDiv.textContent = parseFloat(subtract(firstNumber, displayDiv.textContent).toFixed(9));
                     firstNumber = displayDiv.textContent;
@@ -88,6 +101,11 @@ function operate() {
             operator = '';
             break;
         case '%':
+            if (displayDiv.textContent === '0') {
+                displayDiv.textContent = "Idiot!! can't divied by 0";
+                dividedByZero = true;
+                break
+            }
             displayDiv.textContent = parseFloat(divide(firstNumber, displayDiv.textContent).toFixed(9));
             firstNumber = 0;
             operator = '';
@@ -97,10 +115,11 @@ function operate() {
 const equalBtn = document.querySelector('#operate');
 equalBtn.addEventListener('click', operate);
 
-const clearBtn = document.querySelector('.clear');
-clearBtn.addEventListener('click', () => {
+function clear() {
     clearDisplay = false;
     firstNumber = 0;
     operator = '';
     displayDiv.textContent = '';
-})
+}
+const clearBtn = document.querySelector('.clear');
+clearBtn.addEventListener('click', clear)
