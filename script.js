@@ -95,4 +95,12 @@ function operate() {
     }
 }
 const equalBtn = document.querySelector('#operate');
-equalBtn.addEventListener('click', operate)
+equalBtn.addEventListener('click', operate);
+
+const clearBtn = document.querySelector('.clear');
+clearBtn.addEventListener('click', () => {
+    clearDisplay = false;
+    firstNumber = 0;
+    operator = '';
+    displayDiv.textContent = '';
+})
