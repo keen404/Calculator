@@ -42,25 +42,25 @@ operatorBtns.forEach(function(btn) {
         else {
             switch (operator) {
                 case '+':
-                    displayDiv.textContent = add(firstNumber, displayDiv.textContent);
+                    displayDiv.textContent = parseFloat(add(firstNumber, displayDiv.textContent).toFixed(9));
                     firstNumber = displayDiv.textContent;
                     operator = btn.textContent;
                     clearDisplay = true;
                     break
                 case '-':
-                    displayDiv.textContent = subtract(firstNumber, displayDiv.textContent);
+                    displayDiv.textContent = parseFloat(subtract(firstNumber, displayDiv.textContent).toFixed(9));
                     firstNumber = displayDiv.textContent;
                     operator = btn.textContent;
                     clearDisplay = true;
                     break;
                 case 'x':
-                    displayDiv.textContent = multiply([firstNumber, displayDiv.textContent]);
+                    displayDiv.textContent = parseFloat(multiply([firstNumber, displayDiv.textContent]).toFixed(9));
                     firstNumber = displayDiv.textContent;
                     operator = btn.textContent;
                     clearDisplay = true;
                     break;
                 case '%':
-                    displayDiv.textContent = divide(firstNumber, displayDiv.textContent);
+                    displayDiv.textContent = parseFloat(divide(firstNumber, displayDiv.textContent).toFixed(9));
                     firstNumber = displayDiv.textContent;
                     operator = btn.textContent;
                     clearDisplay = true;
@@ -73,22 +73,22 @@ operatorBtns.forEach(function(btn) {
 function operate() {
     switch (operator) {
         case '+':
-            displayDiv.textContent = add(firstNumber, displayDiv.textContent);
+            displayDiv.textContent = parseFloat(add(firstNumber, displayDiv.textContent).toFixed(9));
             firstNumber = 0;
             operator = '';  
             break
         case '-':
-            displayDiv.textContent = subtract(firstNumber, displayDiv.textContent);
+            displayDiv.textContent = parseFloat(subtract(firstNumber, displayDiv.textContent).toFixed(9));
             firstNumber = 0;
             operator = '';
             break;
         case 'x':
-            displayDiv.textContent = multiply([firstNumber, displayDiv.textContent]);
+            displayDiv.textContent = parseFloat(multiply([firstNumber, displayDiv.textContent]).toFixed(9));
             firstNumber = 0;
             operator = '';
             break;
         case '%':
-            displayDiv.textContent = divide(firstNumber, displayDiv.textContent);
+            displayDiv.textContent = parseFloat(divide(firstNumber, displayDiv.textContent).toFixed(9));
             firstNumber = 0;
             operator = '';
             break;
