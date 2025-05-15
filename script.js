@@ -19,6 +19,7 @@ const displayDiv = document.querySelector('.display');
 const digitBtns = document.querySelectorAll('.digit');
 let clearDisplay = false;
 let dividedByZero = false;
+let suppliedTwoNumber = false;
 
 digitBtns.forEach(function(btn) {
     btn.addEventListener('click', () => {
@@ -31,6 +32,9 @@ digitBtns.forEach(function(btn) {
             operator = '';
             displayDiv.textContent = '';
             dividedByZero = false;
+        }
+        if (firstNumber) {
+            suppliedTwoNumber = true;
         }
         displayDiv.textContent += btn.textContent;
     })
@@ -54,29 +58,38 @@ operatorBtns.forEach(function(btn) {
                         dividedByZero = true;
                         break;
                     }
+                case operator:
+                    if (!suppliedTwoNumber) {
+                        operator = btn.textContent;
+                        break;
+                    }
                 case '+':
                     displayDiv.textContent = parseFloat(add(firstNumber, displayDiv.textContent).toFixed(9));
                     firstNumber = displayDiv.textContent;
                     operator = btn.textContent;
                     clearDisplay = true;
+                    suppliedTwoNumber = false;
                     break;
                 case '-':
                     displayDiv.textContent = parseFloat(subtract(firstNumber, displayDiv.textContent).toFixed(9));
                     firstNumber = displayDiv.textContent;
                     operator = btn.textContent;
                     clearDisplay = true;
+                    suppliedTwoNumber = false;
                     break;
                 case 'x':
                     displayDiv.textContent = parseFloat(multiply([firstNumber, displayDiv.textContent]).toFixed(9));
                     firstNumber = displayDiv.textContent;
                     operator = btn.textContent;
                     clearDisplay = true;
+                    suppliedTwoNumber = false;
                     break;
                 case '%':
                     displayDiv.textContent = parseFloat(divide(firstNumber, displayDiv.textContent).toFixed(9));
                     firstNumber = displayDiv.textContent;
                     operator = btn.textContent;
                     clearDisplay = true;
+                    suppliedTwoNumber = false;
                     break;
             }
         }
@@ -89,16 +102,19 @@ function operate() {
             displayDiv.textContent = parseFloat(add(firstNumber, displayDiv.textContent).toFixed(9));
             firstNumber = 0;
             operator = '';  
+            suppliedTwoNumber = false;
             break
         case '-':
             displayDiv.textContent = parseFloat(subtract(firstNumber, displayDiv.textContent).toFixed(9));
             firstNumber = 0;
             operator = '';
+            suppliedTwoNumber = false;
             break;
         case 'x':
             displayDiv.textContent = parseFloat(multiply([firstNumber, displayDiv.textContent]).toFixed(9));
             firstNumber = 0;
             operator = '';
+            suppliedTwoNumber = false;
             break;
         case '%':
             if (displayDiv.textContent === '0') {
@@ -109,6 +125,7 @@ function operate() {
             displayDiv.textContent = parseFloat(divide(firstNumber, displayDiv.textContent).toFixed(9));
             firstNumber = 0;
             operator = '';
+            suppliedTwoNumber = false;
             break;
     }
 }
